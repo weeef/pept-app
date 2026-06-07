@@ -68,6 +68,7 @@ interface AppState {
   completeOnboarding: (profile: { weight: string, height: string, sex: 'Male' | 'Female' | 'Other' | '' }) => void;
   updateProfile: (profile: Partial<{ weight: string, height: string, sex: 'Male' | 'Female' | 'Other' | '' }>) => void;
   toggleHealthSync: () => void;
+  debugReset: () => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -87,6 +88,21 @@ export const useAppStore = create<AppState>()(
       sex: '',
       healthSyncEnabled: false,
 
+      // ... other actions ...
+      debugReset: () => set({
+        stack: [],
+        isPremium: false,
+        clickCount: 0,
+        loggedDoses: {},
+        history: [],
+        units: 'units',
+        pushNotificationsEnabled: false,
+        hasCompletedOnboarding: false,
+        weight: '',
+        height: '',
+        sex: '',
+        healthSyncEnabled: false,
+      }),
       setStack: (stack) => set({ stack }),
 
       addCompound: (compound) => set((state) => ({
