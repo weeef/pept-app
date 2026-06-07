@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "OptiPep",
+    "slug": "optipep",
+    "scheme": "optipep",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F2F2F7"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.optipep.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F2F2F7"
+      },
+      "package": "com.optipep.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
