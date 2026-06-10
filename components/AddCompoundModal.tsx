@@ -290,6 +290,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  contentCardDark: {
+    backgroundColor: '#1C1C1E',
+    borderColor: '#2C2C2E',
+    borderWidth: 1,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -300,6 +305,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '900',
     color: '#000000',
+  },
+  textDark: {
+    color: '#FFFFFF',
   },
   subtitle: {
     fontSize: 12,
@@ -312,6 +320,9 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#F3F4F6',
     borderRadius: 20,
+  },
+  closeButtonDark: {
+    backgroundColor: '#2C2C2E',
   },
   label: {
     fontSize: 11,
@@ -340,9 +351,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     borderColor: '#000000',
   },
+  toggleButtonActiveDark: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#FFFFFF',
+  },
   toggleButtonInactive: {
     backgroundColor: '#FFFFFF',
     borderColor: '#F3F4F6',
+  },
+  toggleButtonInactiveDark: {
+    backgroundColor: '#2C2C2E',
+    borderColor: '#3A3A3C',
   },
   toggleText: {
     fontSize: 14,
@@ -350,6 +369,9 @@ const styles = StyleSheet.create({
   },
   toggleTextActive: {
     color: '#FFFFFF',
+  },
+  toggleTextActiveDark: {
+    color: '#000000',
   },
   toggleTextInactive: {
     color: '#94A3B8',
@@ -368,6 +390,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#000000',
     height: 64,
+  },
+  inputDark: {
+    backgroundColor: '#2C2C2E',
+    borderColor: '#3A3A3C',
+    color: '#FFFFFF',
   },
   inputIcon: {
     position: 'absolute',
@@ -393,6 +420,10 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  suggestionsContainerDark: {
+    backgroundColor: '#1C1C1E',
+    borderColor: '#3A3A3C',
+  },
   suggestionItem: {
     padding: 16,
     flexDirection: 'row',
@@ -402,6 +433,10 @@ const styles = StyleSheet.create({
   suggestionBorder: {
     borderBottomWidth: 1,
     borderBottomColor: '#F9FAFB',
+  },
+  suggestionBorderDark: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#3A3A3C',
   },
   suggestionName: {
     fontWeight: '700',
@@ -424,6 +459,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
+  protocolBadgeDark: {
+    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+    borderColor: 'rgba(59, 130, 246, 0.2)',
+  },
   protocolIcon: {
     backgroundColor: '#3B82F6',
     padding: 6,
@@ -436,10 +475,16 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1,
   },
+  protocolTitleDark: {
+    color: '#93C5FD',
+  },
   protocolText: {
     fontSize: 12,
     color: '#2563EB',
     fontWeight: '700',
+  },
+  protocolTextDark: {
+    color: '#60A5FA',
   },
   infoBox: {
     backgroundColor: 'rgba(245, 158, 11, 0.05)',
@@ -452,6 +497,10 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 16,
   },
+  infoBoxDark: {
+    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+    borderColor: 'rgba(245, 158, 11, 0.2)',
+  },
   infoIcon: {
     backgroundColor: '#FEF3C7',
     padding: 8,
@@ -462,12 +511,18 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#92400E',
   },
+  infoTitleDark: {
+    color: '#FCD34D',
+  },
   infoText: {
     fontSize: 12,
     color: '#B45309',
     fontWeight: '700',
     lineHeight: 18,
     marginTop: 2,
+  },
+  infoTextDark: {
+    color: '#FBBF24',
   },
   saveButton: {
     width: '100%',
@@ -488,10 +543,16 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  saveButtonDark: {
+    backgroundColor: '#FFFFFF',
+  },
   saveButtonText: {
     color: '#FFFFFF',
     fontWeight: '900',
     fontSize: 18,
+  },
+  saveButtonTextDark: {
+    color: '#000000',
   },
   chip: {
     paddingHorizontal: 20,
@@ -505,9 +566,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     borderColor: '#000000',
   },
+  chipActiveDark: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#FFFFFF',
+  },
   chipInactive: {
     backgroundColor: '#F9FAFB',
     borderColor: '#F3F4F6',
+  },
+  chipInactiveDark: {
+    backgroundColor: '#2C2C2E',
+    borderColor: '#3A3A3C',
   },
   chipText: {
     fontSize: 13,
@@ -515,6 +584,9 @@ const styles = StyleSheet.create({
   },
   chipTextActive: {
     color: '#FFFFFF',
+  },
+  chipTextActiveDark: {
+    color: '#000000',
   },
   chipTextInactive: {
     color: '#94A3B8',

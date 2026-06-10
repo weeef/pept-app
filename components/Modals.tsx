@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Modal, View, Text, TouchableOpacity, TextInput, StyleSheet, ScrollView, Switch, Platform } from 'react-native';
 import { BlurView } from 'expo-blur';
-import { X, Lock, Brain, CheckCircle2, Activity, Info, Flame, Settings, Bell, Ruler, CreditCard, UserCircle2, HeartPulse } from 'lucide-react-native';
+import { X, Lock, Brain, CheckCircle2, Activity, Info, Flame, Settings, Bell, Ruler, CreditCard, UserCircle2, HeartPulse, Moon, Sun, Monitor } from 'lucide-react-native';
 import { useAppStore } from '../store/useAppStore';
 
 export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () => void }) => {
   const { 
     isPremium, units, setUnits, pushNotificationsEnabled, setPushNotifications,
-    healthSyncEnabled, toggleHealthSync, weight, height, sex
+    healthSyncEnabled, toggleHealthSync, weight, height, sex, theme, setTheme
   } = useAppStore();
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -16,11 +16,11 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.modalContainer}>
         <BlurView intensity={20} tint="dark" style={StyleSheet.absoluteFill} />
-        <View style={styles.contentCard}>
+        <View style={[styles.contentCard, theme === 'dark' && styles.contentCardDark]}>
           <View style={styles.header}>
-            <Text style={styles.title}>Settings</Text>
-            <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <X size={20} color="#6B7280" />
+            <Text style={[styles.title, theme === 'dark' && styles.textDark]}>Settings</Text>
+            <TouchableOpacity onPress={onClose} style={[styles.closeButton, theme === 'dark' && styles.closeButtonDark]}>
+              <X size={20} color={theme === 'dark' ? "#94A3B8" : "#6B7280"} />
             </TouchableOpacity>
           </View>
 
@@ -31,7 +31,7 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
               
               <TouchableOpacity 
                 onPress={() => setShowProfileModal(true)}
-                style={styles.menuItem}
+                style={[styles.menuItem, theme === 'dark' && styles.menuItemDark]}
                 activeOpacity={0.7}
               >
                 <View style={styles.menuItemLeft}>
@@ -39,7 +39,7 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
                     <UserCircle2 size={20} color="white" />
                   </View>
                   <View>
-                    <Text style={styles.menuItemTitle}>About You</Text>
+                    <Text style={[styles.menuItemTitle, theme === 'dark' && styles.textDark]}>About You</Text>
                     <Text style={styles.menuItemSubtitle}>{weight ? `${weight} • ${height} • ${sex}` : 'Set your profile details'}</Text>
                   </View>
                 </View>
@@ -48,7 +48,7 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
 
               <TouchableOpacity 
                 onPress={() => setShowPremiumModal(true)}
-                style={styles.menuItem}
+                style={[styles.menuItem, theme === 'dark' && styles.menuItemDark]}
                 activeOpacity={0.7}
               >
                 <View style={styles.menuItemLeft}>
@@ -56,7 +56,7 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
                     <Lock size={20} color="white" />
                   </View>
                   <View>
-                    <Text style={styles.menuItemTitle}>Upgrade to Pro</Text>
+                    <Text style={[styles.menuItemTitle, theme === 'dark' && styles.textDark]}>Upgrade to Pro</Text>
                     <Text style={styles.menuItemSubtitle}>{isPremium ? 'Lifetime Access Active' : 'Unlock all features'}</Text>
                   </View>
                 </View>
@@ -68,13 +68,13 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
             <View style={styles.section}>
               <Text style={styles.sectionLabel}>Integrations</Text>
               
-              <View style={styles.menuItem}>
+              <View style={[styles.menuItem, theme === 'dark' && styles.menuItemDark]}>
                 <View style={[styles.menuItemLeft, { flex: 1, paddingRight: 16 }]}>
                   <View style={[styles.iconContainer, { backgroundColor: '#EF4444' }]}>
                     <HeartPulse size={20} color="white" />
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.menuItemTitle}>Sync Health Data</Text>
+                    <Text style={[styles.menuItemTitle, theme === 'dark' && styles.textDark]}>Sync Health Data</Text>
                     <Text style={[styles.menuItemSubtitle, { lineHeight: 16 }]}>Import Apple Health / Google Fit data for weight, sleep, and HR.</Text>
                   </View>
                 </View>
@@ -90,12 +90,12 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
             <View style={styles.section}>
               <Text style={styles.sectionLabel}>Preferences</Text>
               
-              <View style={styles.menuItem}>
+              <View style={[styles.menuItem, theme === 'dark' && styles.menuItemDark]}>
                 <View style={styles.menuItemLeft}>
                   <View style={[styles.iconContainer, { backgroundColor: '#A855F7' }]}>
                     <Bell size={20} color="white" />
                   </View>
-                  <Text style={styles.menuItemTitle}>Push Notifications</Text>
+                  <Text style={[styles.menuItemTitle, theme === 'dark' && styles.textDark]}>Push Notifications</Text>
                 </View>
                 <Switch 
                   value={pushNotificationsEnabled} 
@@ -104,14 +104,14 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
                 />
               </View>
 
-              <View style={[styles.menuItem, { flexDirection: 'column', alignItems: 'stretch', gap: 16, paddingVertical: 20 }]}>
+              <View style={[styles.menuItem, theme === 'dark' && styles.menuItemDark, { flexDirection: 'column', alignItems: 'stretch', gap: 16, paddingVertical: 20 }]}>
                 <View style={styles.menuItemLeft}>
                   <View style={[styles.iconContainer, { backgroundColor: '#F97316' }]}>
                     <Ruler size={20} color="white" />
                   </View>
-                  <Text style={styles.menuItemTitle}>Measurement Units</Text>
+                  <Text style={[styles.menuItemTitle, theme === 'dark' && styles.textDark]}>Measurement Units</Text>
                 </View>
-                <View style={styles.unitToggleRow}>
+                <View style={[styles.unitToggleRow, theme === 'dark' && styles.unitToggleRowDark]}>
                   <TouchableOpacity 
                     onPress={() => setUnits('units')}
                     style={[styles.unitTab, units === 'units' && styles.unitTabActive]}
@@ -123,6 +123,39 @@ export const MenuModal = ({ visible, onClose }: { visible: boolean, onClose: () 
                     style={[styles.unitTab, units === 'ml' && styles.unitTabActive]}
                   >
                     <Text style={[styles.unitTabText, units === 'ml' && styles.unitTabTextActive]}>Milliliters (mL)</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              {/* Theme Selection */}
+              <View style={[styles.menuItem, theme === 'dark' && styles.menuItemDark, { flexDirection: 'column', alignItems: 'stretch', gap: 16, paddingVertical: 20 }]}>
+                <View style={styles.menuItemLeft}>
+                  <View style={[styles.iconContainer, { backgroundColor: '#6B7280' }]}>
+                    {theme === 'light' ? <Sun size={20} color="white" /> : theme === 'dark' ? <Moon size={20} color="white" /> : <Monitor size={20} color="white" />}
+                  </View>
+                  <Text style={[styles.menuItemTitle, theme === 'dark' && styles.textDark]}>App Theme</Text>
+                </View>
+                <View style={[styles.unitToggleRow, theme === 'dark' && styles.unitToggleRowDark]}>
+                  <TouchableOpacity 
+                    onPress={() => setTheme('light')}
+                    style={[styles.unitTab, theme === 'light' && styles.unitTabActive]}
+                  >
+                    <Sun size={16} color={theme === 'light' ? 'white' : '#94A3B8'} style={{ marginBottom: 4 }} />
+                    <Text style={[styles.unitTabText, theme === 'light' && styles.unitTabTextActive]}>Light</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity 
+                    onPress={() => setTheme('dark')}
+                    style={[styles.unitTab, theme === 'dark' && styles.unitTabActive]}
+                  >
+                    <Moon size={16} color={theme === 'dark' ? 'white' : '#94A3B8'} style={{ marginBottom: 4 }} />
+                    <Text style={[styles.unitTabText, theme === 'dark' && styles.unitTabTextActive]}>Dark</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity 
+                    onPress={() => setTheme('system')}
+                    style={[styles.unitTab, theme === 'system' && styles.unitTabActive]}
+                  >
+                    <Monitor size={16} color={theme === 'system' ? 'white' : '#94A3B8'} style={{ marginBottom: 4 }} />
+                    <Text style={[styles.unitTabText, theme === 'system' && styles.unitTabTextActive]}>System</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -366,6 +399,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  contentCardDark: {
+    backgroundColor: '#1C1C1E',
+    borderColor: '#2C2C2E',
+    borderWidth: 1,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -377,10 +415,16 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#000000',
   },
+  textDark: {
+    color: '#FFFFFF',
+  },
   closeButton: {
     padding: 8,
     backgroundColor: '#F3F4F6',
     borderRadius: 20,
+  },
+  closeButtonDark: {
+    backgroundColor: '#2C2C2E',
   },
   section: {
     marginBottom: 32,
@@ -404,6 +448,10 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     borderWidth: 1,
     borderColor: '#F3F4F6',
+  },
+  menuItemDark: {
+    backgroundColor: '#2C2C2E',
+    borderColor: '#3A3A3C',
   },
   menuItemLeft: {
     flexDirection: 'row',
@@ -442,6 +490,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#F3F4F6',
+  },
+  unitToggleRowDark: {
+    backgroundColor: '#1C1C1E',
+    borderColor: '#3A3A3C',
   },
   unitTab: {
     flex: 1,

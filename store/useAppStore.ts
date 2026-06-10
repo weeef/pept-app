@@ -45,6 +45,7 @@ interface AppState {
   history: HistoryItem[];
   units: UnitType;
   pushNotificationsEnabled: boolean;
+  theme: 'light' | 'dark' | 'system';
   
   // Profile & Health
   hasCompletedOnboarding: boolean;
@@ -65,6 +66,7 @@ interface AppState {
   setStack: (stack: Compound[]) => void;
   setUnits: (units: UnitType) => void;
   setPushNotifications: (enabled: boolean) => void;
+  setTheme: (theme: 'light' | 'dark' | 'system') => void;
   completeOnboarding: (profile: { weight: string, height: string, sex: 'Male' | 'Female' | 'Other' | '' }) => void;
   updateProfile: (profile: Partial<{ weight: string, height: string, sex: 'Male' | 'Female' | 'Other' | '' }>) => void;
   toggleHealthSync: () => void;
@@ -81,6 +83,7 @@ export const useAppStore = create<AppState>()(
       history: [],
       units: 'units',
       pushNotificationsEnabled: false,
+      theme: 'system',
       
       hasCompletedOnboarding: false,
       weight: '',
@@ -97,6 +100,7 @@ export const useAppStore = create<AppState>()(
         history: [],
         units: 'units',
         pushNotificationsEnabled: false,
+        theme: 'system',
         hasCompletedOnboarding: false,
         weight: '',
         height: '',
@@ -104,6 +108,7 @@ export const useAppStore = create<AppState>()(
         healthSyncEnabled: false,
       }),
       setStack: (stack) => set({ stack }),
+      setTheme: (theme) => set({ theme }),
 
       addCompound: (compound) => set((state) => ({
         stack: [...state.stack, { ...compound, id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5) }]

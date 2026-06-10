@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAppStore } from '../../store/useAppStore';
 import { MenuModal, AdModal } from '../../components/Modals';
 import { AddCompoundModal } from '../../components/AddCompoundModal';
+import { useColorScheme } from 'nativewind';
 
 export default function TabLayout() {
   const isPremium = useAppStore(state => state.isPremium);
@@ -13,6 +14,8 @@ export default function TabLayout() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showAdModal, setShowAdModal] = useState(false);
   const insets = useSafeAreaInsets();
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
   const screenListeners = React.useMemo(() => ({
     state: (e: any) => {
@@ -24,28 +27,28 @@ export default function TabLayout() {
   }), []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#F2F2F7' }}>
+    <View style={{ flex: 1, backgroundColor: isDark ? '#000000' : '#F2F2F7' }}>
       <View 
         style={{ 
           paddingTop: Math.max(insets.top, 16), 
           paddingBottom: 8,
           paddingHorizontal: 24,
-          backgroundColor: '#F2F2F7',
+          backgroundColor: isDark ? '#000000' : '#F2F2F7',
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center'
         }}
       >
         <View>
-          <Text className="text-3xl font-bold tracking-tight text-black">
+          <Text className="text-3xl font-bold tracking-tight text-black dark:text-white">
             Opti<Text className="text-blue-500">Pep</Text>
           </Text>
         </View>
         <TouchableOpacity 
           onPress={() => setShowMenuModal(true)} 
-          className="p-2.5 bg-white rounded-2xl shadow-sm border border-gray-100"
+          className="p-2.5 bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800"
         >
-          <Menu size={22} color="#6B7280" />
+          <Menu size={22} color={isDark ? "#94A3B8" : "#6B7280"} />
         </TouchableOpacity>
       </View>
 
@@ -53,18 +56,18 @@ export default function TabLayout() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: isDark ? '#1C1C1E' : '#FFFFFF',
             borderTopWidth: 0,
             height: 70 + insets.bottom,
             paddingBottom: insets.bottom > 0 ? insets.bottom : 12,
             paddingTop: 12,
             shadowColor: '#000',
             shadowOffset: { width: 0, height: -4 },
-            shadowOpacity: 0.05,
+            shadowOpacity: isDark ? 0.3 : 0.05,
             shadowRadius: 8,
             elevation: 10,
           },
-          tabBarActiveTintColor: '#000000',
+          tabBarActiveTintColor: isDark ? '#FFFFFF' : '#000000',
           tabBarInactiveTintColor: '#94A3B8',
         }}
         screenListeners={screenListeners}
@@ -77,7 +80,7 @@ export default function TabLayout() {
               <TabIcon icon={<Activity />} focused={focused} color="bg-blue-500" />
             ),
             tabBarLabel: ({ focused }) => (
-              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? '#000000' : '#94A3B8' }}>Today</Text>
+              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? (isDark ? '#FFFFFF' : '#000000') : '#94A3B8' }}>Today</Text>
             ),
           }}
         />
@@ -89,7 +92,7 @@ export default function TabLayout() {
               <TabIcon icon={<Syringe />} focused={focused} color="bg-teal-500" />
             ),
             tabBarLabel: ({ focused }) => (
-              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? '#000000' : '#94A3B8' }}>Math</Text>
+              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? (isDark ? '#FFFFFF' : '#000000') : '#94A3B8' }}>Math</Text>
             ),
           }}
         />
@@ -111,7 +114,7 @@ export default function TabLayout() {
                   height: 70,
                 }}
               >
-                <View className="bg-orange-500 w-16 h-16 rounded-full items-center justify-center shadow-xl shadow-orange-500/40 border-[6px] border-[#F2F2F7]">
+                <View className="bg-orange-500 w-16 h-16 rounded-full items-center justify-center shadow-xl shadow-orange-500/40 border-[6px] border-[#F2F2F7] dark:border-black">
                   <Plus size={32} color="white" strokeWidth={3} />
                 </View>
               </TouchableOpacity>
@@ -127,7 +130,7 @@ export default function TabLayout() {
               <TabIcon icon={<Beaker />} focused={focused} color="bg-indigo-500" />
             ),
             tabBarLabel: ({ focused }) => (
-              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? '#000000' : '#94A3B8' }}>Stack</Text>
+              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? (isDark ? '#FFFFFF' : '#000000') : '#94A3B8' }}>Stack</Text>
             ),
           }}
         />
@@ -139,7 +142,7 @@ export default function TabLayout() {
               <TabIcon icon={<Brain />} focused={focused} color="bg-purple-500" />
             ),
             tabBarLabel: ({ focused }) => (
-              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? '#000000' : '#94A3B8' }}>Advisor</Text>
+              <Text style={{ fontSize: 11, fontWeight: '700', marginTop: 2, color: focused ? (isDark ? '#FFFFFF' : '#000000') : '#94A3B8' }}>Advisor</Text>
             ),
           }}
         />
